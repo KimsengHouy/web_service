@@ -80,6 +80,7 @@ webSocket.on('request', (req) => {
                     break
 		case Types.SignedInUsers:
                     const signedInUsers = signedInUsers(users)
+			    console.log(signedInUsers)
 			data.data = signedInUsers
                     sendToConnection(connection, {
                         type: Types.SignedInUsers,
@@ -116,7 +117,7 @@ const findUser = username => {
 const signedInUsers = users => {
 	usernames = []
 	for (let i = 0; i < users.length; i++) {
-        	usernames[i] = users[i].username
+        	usernames.push(users[i].username)
     	}
 	return usernames
 }
