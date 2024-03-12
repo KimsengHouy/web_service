@@ -79,12 +79,12 @@ webSocket.on('request', (req) => {
                     }
                     break
 		case Types.SignedInUser:
-                    const signedInUsers = users.map(user => user.username);
+                    const signedInUsers = users.map(user => user.username)
                     sendToConnection(connection, {
                         type: Types.SignedInUser,
                         users: signedInUsers
                     });
-                    break;
+                    break
             }
         } catch (e) {
             console.log(e.message)
