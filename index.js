@@ -79,6 +79,7 @@ webSocket.on('request', (req) => {
                     }
                     break
 		case Types.SignedInUsers:
+			    console.log(data.type)
                     const signedInUsers = signedInUsers(users)
 			    console.log(signedInUsers)
 			data.data = signedInUsers
