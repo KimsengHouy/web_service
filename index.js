@@ -80,9 +80,11 @@ webSocket.on('request', (req) => {
                     break
 		case Types.SignedInUsers:
                     const signedInUsers = signedInUsers(users)
+			data.data = signedInUsers
                     sendToConnection(connection, {
                         type: Types.SignedInUsers,
-                        users: signedInUsers
+                        users: data.username
+			    data:data.data
                     })
                     break
             }
