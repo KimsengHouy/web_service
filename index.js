@@ -83,7 +83,7 @@ webSocket.on('request', (req) => {
 			data.data = signedInUsers
                     sendToConnection(connection, {
                         type: Types.SignedInUsers,
-                        users: data.username
+                        users: data.username,
 			    data:data.data
                     })
                     break
