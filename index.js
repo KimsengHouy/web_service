@@ -17,7 +17,7 @@ const Types = {
     Answer: "Answer",
     IceCandidates: "IceCandidates",
     EndCall: "EndCall",
-	SignedInUser: "SignedInUser",
+    SignedInUser: "SignedInUser",
 }
 
 const webSocket = new socket({httpServer: server})
@@ -78,7 +78,7 @@ webSocket.on('request', (req) => {
                         })
                     }
                     break
-				 case Types.SignedInUser:
+		case Types.SignedInUser:
                     const signedInUsers = users.map(user => user.username);
                     sendToConnection(connection, {
                         type: Types.SignedInUser,
