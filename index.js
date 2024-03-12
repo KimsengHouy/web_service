@@ -17,7 +17,7 @@ const Types = {
     Answer: "Answer",
     IceCandidates: "IceCandidates",
     EndCall: "EndCall",
-    SignedInUser: "SignedInUser",
+    SignedInUsers: "SignedInUsers",
 }
 
 const webSocket = new socket({httpServer: server})
@@ -78,10 +78,10 @@ webSocket.on('request', (req) => {
                         })
                     }
                     break
-		case Types.SignedInUser:
-                    const signedInUsers = users.map(user => user.username)
+		case Types.SignedInUsers:
+                    const signedInUsers = signedInUsers(users)
                     sendToConnection(connection, {
-                        type: Types.SignedInUser,
+                        type: Types.SignedInUsers,
                         users: signedInUsers
                     })
                     break
@@ -109,4 +109,12 @@ const findUser = username => {
     for (let i = 0; i < users.length; i++) {
         if (users[i].username === username) return users[i]
     }
+}
+
+const signedInUsers = users => {
+	usernames = []
+	for (let i = 0; i < users.length; i++) {
+        	usernames[i] = users[i].username
+    	}
+	return usernames
 }
