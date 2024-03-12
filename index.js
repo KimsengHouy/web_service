@@ -83,7 +83,7 @@ webSocket.on('request', (req) => {
                     sendToConnection(connection, {
                         type: Types.SignedInUser,
                         users: signedInUsers
-                    });
+                    })
                     break
             }
         } catch (e) {
