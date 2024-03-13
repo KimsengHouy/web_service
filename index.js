@@ -12,6 +12,7 @@ const users = []
 const Types = {
     SignIn: "SignIn",
     StartStreaming: "StartStreaming",
+    NotifyRequestStream: "NotifyRequestStream",	
     UserFoundSuccessfully: "UserFoundSuccessfully",
     Offer: "Offer",
     Answer: "Answer",
@@ -50,6 +51,15 @@ webSocket.on('request', (req) => {
                             })
                     }
                     break
+		 case Types.NotifyRequestStream :
+			 if (userToReceive) {
+			    sendToConnection(userToReceive.conn, {
+				    type: Types.NotifyRequestStream,
+				    username: currentUser.username,
+				    target: userToReceive.username
+			    })
+		   }
+		    break    
                 case Types.Offer :
                     if (userToReceive) {
                         sendToConnection(userToReceive.conn, {
