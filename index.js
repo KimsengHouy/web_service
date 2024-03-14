@@ -12,7 +12,8 @@ const users = []
 const Types = {
     SignIn: "SignIn",
     StartStreaming: "StartStreaming",
-    RequestStartStreaming: "RequestStartStreaming",	
+    RequestStartStreaming: "RequestStartStreaming",
+    NoSharingStreamPermission: "NoSharingStreamPermission",
     UserFoundSuccessfully: "UserFoundSuccessfully",
     Offer: "Offer",
     Answer: "Answer",
@@ -59,7 +60,17 @@ webSocket.on('request', (req) => {
 				    target: userToReceive.username
 			    })
 		   }
-		    break    
+		    break  
+		case Types.NoSharingStreamPermission :
+			    if (userToReceive) {
+			    sendToConnection(userToReceive.conn, {
+				type: Types.NoSharingStreamPermission,
+				username: currentUser.username,
+				target: userToReceive.username,
+				data: data.data    
+			    })
+			    }
+		   break 
                 case Types.Offer :
                     if (userToReceive) {
                         sendToConnection(userToReceive.conn, {
