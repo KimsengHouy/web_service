@@ -119,8 +119,22 @@ webSocket.on('request', (req) => {
     connection.on('close', () => {
         users.forEach(user => {
             if (user.conn === connection) {
-		console.log(user.username + ' is disconnected')
+		console.log(user.username + ' close')
                 users.splice(users.indexOf(user), 1)
+            }
+        })
+    })
+    connection.on('disconnect', (reason) => {
+        users.forEach(user => {
+            if (user.conn === connection) {
+		console.log(user.username + ' disconnect with ' + reason)
+            }
+        })
+    })
+    connection.on('error', (err) => {
+        users.forEach(user => {
+            if (user.conn === connection) {
+		console.log(user.username + ' error with ' + err)
             }
         })
     })
