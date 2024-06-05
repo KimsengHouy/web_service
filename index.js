@@ -20,6 +20,7 @@ const Types = {
     IceCandidates: "IceCandidates",
     EndCall: "EndCall",
     SignedInUsers: "SignedInUsers",
+    ScreenRotation, "ScreenRotation",	
 }
 
 const webSocket = new socket({httpServer: server})
@@ -71,6 +72,16 @@ webSocket.on('request', (req) => {
 			    })
 			    }
 		   break 
+		case Types.ScreenRotation :
+			    if (userToReceive) {
+			    sendToConnection(userToReceive.conn, {
+				type: Types.ScreenRotation,
+				username: currentUser.username,
+				target: userToReceive.target,
+				data: data.data    
+			    })
+			    }
+		   break 	    
                 case Types.Offer :
                     if (userToReceive) {
                         sendToConnection(userToReceive.conn, {
