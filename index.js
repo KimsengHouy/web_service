@@ -20,7 +20,7 @@ const Types = {
     IceCandidates: "IceCandidates",
     EndCall: "EndCall",
     SignedInUsers: "SignedInUsers",
-    ScreenRotation, "ScreenRotation",	
+    ScreenRotation: "ScreenRotation",	
 }
 
 const webSocket = new socket({httpServer: server})
